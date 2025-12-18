@@ -1,0 +1,10 @@
+TAREFA                                                         STATUS
+1. Criação de versionamento com timestemp no nome ou pasta        Concluído
+2. Incluir simulação de falha no relatório                        Pendente
+3. Dividir o código em módulos separados                          Concluído
+4. Criar um pacote tests/ com arquivos de teste                   Pendente
+5. Cobrir testes de cenários sucessoe e falhas                    Em andamento
+6. Registrar em um arquivo de log                                 Concluído
+7. Níveis de log INFO para operações normais, ERROR para falhas   Concluído
+8. Criar um Dockerfile que instale dependências                   Pendente testar   
+9. Criar entrypoint, com opções para passar argumentos            Concluído
