@@ -1,9 +1,9 @@
-🛡️ Ferramenta de Backup Automatizado (Projeto DevOps)
+Ferramenta de Backup Automatizado (Projeto DevOps)
 Este projeto é uma solução em Python para a automação de backups, desenvolvida como atividade final para a disciplina de Python para Automação em DevOps. A aplicação foca na modularização, tratamento de erros, logs detalhados e portabilidade via Docker.
 
 
 
-🏗️ Arquitetura do Sistema
+Arquitetura do Sistema
 A aplicação foi dividida em módulos independentes para garantir a reutilização de código e facilidade de manutenção:
 
 
@@ -21,7 +21,7 @@ logger.py: Centraliza a configuração de logs, permitindo o rastreio tanto no t
 
 tests/: Pasta dedicada a testes unitários automatizados utilizando o framework pytest.
 
-🛠️ Tecnologias Utilizadas
+Tecnologias Utilizadas
 
 Python 3.9+.
 
@@ -36,7 +36,7 @@ Docker: Para isolamento e garantia de que a aplicação corre em qualquer ambien
 
 Logging: Biblioteca padrão para registos INFO e ERROR.
 
-🚀 Como Executar o Projeto
+Como Executar o Projeto
 1. Construir a Imagem Docker
 No terminal, dentro da pasta do projeto, execute:
 
@@ -53,7 +53,7 @@ sudo docker run --rm \
   -v $(pwd)/destino:/app/dados_destino \
   -v $(pwd)/logs:/app/logs \
   backup-tool /app/dados_origem /app/dados_destino
-🧪 Qualidade e Testes
+Qualidade e Testes
 O projeto inclui testes unitários que cobrem os requisitos específicos:
 
 
@@ -70,7 +70,8 @@ Para correr os testes no seu ambiente Linux:
 Bash
 
 python3 -m pytest tests/
-📊 Demonstração de Resultados
+
+Demonstração de Resultados
 
 Logs Gerados: Os registos são salvos automaticamente em logs/backup.log, contendo o timestamp e o status de cada operação.
 
