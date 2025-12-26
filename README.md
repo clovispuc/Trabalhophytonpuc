@@ -37,35 +37,17 @@ Docker: Para isolamento e garantia de que a aplicação corre em qualquer ambien
 Logging: Biblioteca padrão para registos INFO e ERROR.
 
 Como Executar o Projeto
-1. Construir a Imagem Docker
-No terminal, dentro da pasta do projeto, execute:
 
-Bash
 
-sudo docker build -t backup-tool .
-2. Executar o Backup (Com Volumes)
-Para que o backup seja persistido na sua máquina real, utilizamos volumes do Docker:
-
-Bash
-
-sudo docker run --rm \
-  -v $(pwd)/origem:/app/dados_origem \
-  -v $(pwd)/destino:/app/dados_destino \
-  -v $(pwd)/logs:/app/logs \
-  backup-tool /app/dados_origem /app/dados_destino
 Qualidade e Testes
 O projeto inclui testes unitários que cobrem os requisitos específicos:
 
-
-
 Sucesso: Valida se os ficheiros são copiados corretamente para o destino.
-
-
 
 Falha: Simula cenários de diretórios inexistentes e valida se o erro é tratado adequadamente.
 
 
-Para correr os testes no seu ambiente Linux:
+Para executar os testes no seu ambiente Linux:
 
 Bash
 
