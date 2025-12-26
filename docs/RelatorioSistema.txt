@@ -1,0 +1,55 @@
+Relatório do Sistema - trabalhophytonpuc
+Data de geração: 2025-12-26
+Versão online e completa: https://docs.google.com/document/d/1JRNSn1J0-l1J2J1OAIaKhxuA7DBQf3zP1mxGJ27eLxQ/edit?usp=sharing
+
+1. Arquitetura
+- Linguagem: Python 3.9+
+- Estrutura principal:
+  - `main.py`: ponto de entrada. Recebe dois argumentos: <origem> <destino> e chama `backup.realizar_backup`.
+  - `backup.py`: lógica de cópia/versão de backups.
+  - `logger.py`: configuração de logs (console e arquivo `logs/backup.log`).
+  - `tests/`: testes unitários com pytest.
+- Docker: existe um `Dockerfile` que define WORKDIR /app e usa ENTRYPOINT ["python","main.py"], e instala o pytest dentro da imagem.
+
+2. Como executar o projeto
+2.1 Local (Windows PowerShell):
+  - Instalar dependências (se necessário):
+    python -m pip install -U -r requirements.txt  # se existir requirements
+  - Executar:
+    python .\main.py C:\teste\a C:\teste\b
+
+2.2 Docker (build + run):
+  - Construir imagem:
+    docker build -t trabalhophytonpuc:latest .
+
+  - Executar (montando origem em leitura e destino para saída):
+    docker run --rm -v "C:\teste\a":/app/origem:ro -v "C:\teste\b":/app/destino trabalhophytonpuc:latest /app/origem /app/destino
+
+3. Resultados dos testes (pytest)
+- Tentativa de executar `python -m pytest -q` neste ambiente retornou:
+  Erro: No module named pytest
+  (Significa que o `pytest` não está instalado no ambiente Python local.)
+
+Saídas coletadas (execução):
+C:\Users\Emanuel\Documents\Projetos\Trabalhophytonpuc> python -m pytest -q
+C:\Users\Emanuel\AppData\Local\Programs\Python\Python314\python.exe: No module named pytest
+
+Como executar os testes corretamente:
+- Local (instalando pytest):
+  python -m pip install -U pytest
+  python -m pytest -q
+
+- Alternativa usando Docker (não precisa instalar pytest localmente):
+  # PowerShell (Windows) - instala pytest na imagem temporária e executa
+  docker run --rm -v "C:\Users\Emanuel\Documents\Projetos\Trabalhophytonpuc":/app -w /app python:3.9-slim sh -c "pip install -q pytest && pytest -q"
+
+Observações:
+- O arquivo `tests/test_logger.py` está vazio (nenhum teste dentro dele); `tests/test_backup.py` contém testes de existência de diretório e backup bem sucedido.
+- Se desejar, posso: instalar pytest no ambiente, rodar os testes e atualizar este relatório com o resultado completo (lista de testes, passed/failed), ou gerar um `RelatorioSistema.docx` com o mesmo conteúdo.
+
+4. Conclusão
+- O projeto está organizado e containerizável via Docker. Para obter resultados completos dos testes no relatório é necessário instalar o `pytest` localmente ou executar os testes dentro de um container que instale o `pytest`.
+
+
+---
+Relatório gerado automaticamente.
