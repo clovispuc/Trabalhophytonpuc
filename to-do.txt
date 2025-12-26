@@ -6,5 +6,5 @@ TAREFA                                                         STATUS
 5. Cobrir testes de cenários sucessoe e falhas                    Em andamento
 6. Registrar em um arquivo de log                                 Concluído
 7. Níveis de log INFO para operações normais, ERROR para falhas   Concluído
-8. Criar um Dockerfile que instale dependências                   Pendente testar   
+8. Criar um Dockerfile que instale dependências                   Concluído
 9. Criar entrypoint, com opções para passar argumentos            Concluído
