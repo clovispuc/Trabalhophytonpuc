@@ -36,8 +36,15 @@ Docker: Para isolamento e garantia de que a aplicação corre em qualquer ambien
 
 Logging: Biblioteca padrão para registos INFO e ERROR.
 
-Como Executar o Projeto
 
+Como construir a imagem Docker do Projeto:
+docker build -f ./Dockerfile -t trabalhophytonpuc:latest .
+
+Como Executar o Projeto localmente no Windows:
+python .\main.py c:\diretorio\origem c:\diretorio\destino
+
+Como executar o projeto baseado em Docker:
+ docker run --rm  -v "C:\diretorio\origem:/app/origem:ro"  -v "C:\diretorio\destino:/app/destino"  trabalhophytonpuc:latest /app/origem /app/destino
 
 Qualidade e Testes
 O projeto inclui testes unitários que cobrem os requisitos específicos:
