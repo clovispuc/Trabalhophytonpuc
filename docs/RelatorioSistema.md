@@ -72,11 +72,3 @@ python -m pytest tests -q
 ```powershell
 docker run --rm -v "C:\Users\Emanuel\Documents\Projetos\Trabalhophytonpuc":/app -w /app python:3.9-slim sh -c "pip install -q pytest && pytest tests -q"
 ```
-
----
-
-## 🔍 4. Observações importantes
-
-- ✅ `tests/test_logger.py` contém testes que verificam criação da pasta `logs`, escrita no arquivo `logs/backup.log`, não-duplicação de handlers e que o `FileHandler` aponta para `backup.log`.
-- ✅ `tests/test_backup.py` cobre casos de origem inexistente e backup bem-sucedido.
-- 🔧 Corrigi `configurar_logger()` para reconfigurar handlers de forma determinística (remove handlers antigos e adiciona `FileHandler` + `StreamHandler`), resolvendo falhas anteriores nos testes.
