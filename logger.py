@@ -1,14 +1,19 @@
 import logging
 import os
 
-def configurar_logger():
+def configurar_logger(log_dir=None):
     """
     Configura o sistema de logs para salvar em arquivo e mostrar na tela.
-    Garante que não haja handlers duplicados e que 'logs/backup.log' seja usado.
+    Se `log_dir` for fornecido, grava em `<log_dir>/logs/backup.log`.
+    Garante que não haja handlers duplicados e que o arquivo seja criado.
     """
-    # Garante que a pasta logs existe
-    if not os.path.exists('logs'):
-        os.makedirs('logs')
+    # Determina o diretório de logs
+    if log_dir:
+        logs_path = os.path.join(log_dir, 'logs')
+    else:
+        logs_path = 'logs'
+
+    os.makedirs(logs_path, exist_ok=True)
 
     root = logging.getLogger()
     # Remove handlers existentes para evitar duplicação e garantir comportamento determinístico
@@ -21,7 +26,7 @@ def configurar_logger():
 
     # Configura handlers explícitos
     fmt = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-    fh = logging.FileHandler("logs/backup.log")
+    fh = logging.FileHandler(os.path.join(logs_path, 'backup.log'))
     fh.setFormatter(fmt)
     sh = logging.StreamHandler()
     sh.setFormatter(fmt)

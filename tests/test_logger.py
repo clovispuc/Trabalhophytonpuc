@@ -72,3 +72,22 @@ def test_filehandler_usa_backup_log(tmp_path, monkeypatch):
     assert file_handlers, 'Nenhum FileHandler encontrado'
     fh = file_handlers[0]
     assert Path(fh.baseFilename).name == 'backup.log'
+
+
+def test_configurar_logger_usa_log_dir(tmp_path, monkeypatch):
+    """Verifica que ao passar log_dir os logs são gravados dentro do destino."""
+    monkeypatch.chdir(tmp_path)
+    destino = tmp_path / 'destino'
+    logger = configurar_logger(str(destino))
+
+    logs_dir = destino / 'logs'
+    assert logs_dir.exists() and logs_dir.is_dir()
+
+    logging.getLogger().info('mensagem destino')
+    # força flush
+    for h in logging.getLogger().handlers:
+        if isinstance(h, logging.FileHandler):
+            h.flush()
+
+    content = (logs_dir / 'backup.log').read_text(encoding='utf-8')
+    assert 'mensagem destino' in content
